@@ -60,4 +60,89 @@ router.get("/videocard", getAllVideoCard);
 router.get("/videocard/:id", getVideoCardById);
 router.delete("/videocard/:id", deleteVideoCardById);
 
+/**
+ * @swagger
+ * /products
+ * get:
+ *   summary: Get all products
+ *   responses:
+ *     200:
+ *       description: A successful response
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object 
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 description: A message indicating the success of the request
+ *               data:  
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/Mouse'
+ * 
+ * /products/:id
+ * get:
+ *   summary: Get a product by ID   
+ *   parameters:    
+ *      
+ *     - in: path
+ *       name: id        
+ *       required: true 
+ *       schema:
+ *         type: string
+ *   responses:
+ *     200:
+ *       description: A successful response
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 description: A message indicating the success of the request
+ *               data:
+ *                 $ref: '#/components/schemas/Mouse'
+ * 
+ * /products/:id
+ * delete:
+ *   summary: Delete a product by ID
+ *   parameters:    
+ *     - in: path
+ *       name: id        
+ *       required: true 
+ *       schema:
+ *         type: string
+ *   responses:
+ *     200:
+ *       description: A successful response
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 description: A message indicating the success of the request
+ *               data:
+ *                 $ref: '#/components/schemas/Mouse'
+ *     404:
+ *       description: Product not found
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 description: A message indicating the failure of the request
+ *               error:
+ *                 type: string
+ *                 description: The error message
+ * 
+
+ * 
+ * 
+ */
 export default router;
