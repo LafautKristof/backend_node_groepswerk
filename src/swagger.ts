@@ -1,4 +1,4 @@
-import swaggerJSDoc from "swagger-jsdoc";
+// import swaggerJSDoc from "swagger-jsdoc";
 
 const options = {
     definition: {
@@ -120,4 +120,4 @@ const options = {
     },
 };
 
-export const specs = swaggerJSDoc(options);
+// export const specs = swaggerJSDoc(options);
