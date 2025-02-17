@@ -110,6 +110,21 @@ export const login = async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error login" });
+    }
+};
+
+export const logout = async (req: Request, res: Response) => {
+    try {
+        res.cookie("token", "", {
+            maxAge: 0,
+            httpOnly: true,
+            secure: NODE_ENV === "production" ? true : false,
+            sameSite: "lax",
+        });
+        res.status(200).json({ message: "Logout successful" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error Logout" });
     }
 };
