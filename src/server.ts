@@ -5,13 +5,14 @@ import express from "express";
 import { notFound } from "./controllers/notFoundController";
 import mongoose from "mongoose";
 import ProductRoutes from "./Routes/ProductRoutes";
-
+import cookieParser from "cookie-parser";
 // Variables
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 // Routes
