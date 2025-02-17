@@ -66,3 +66,50 @@ export const register = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
+export const login = async (req: Request, res: Response) => {
+    try {
+        const { email_phone, password } = req.body;
+        const user = await User.findOne({ email_phone });
+        if (!user) {
+            res.status(401).json({ message: "Invalid credentials" });
+            return;
+        }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            res.status(401).json({ message: "Invalid credentials" });
+            return;
+        }
+        if (!JWT_SECRET) {
+            res.status(500).json({ message: "JWT_SECRET is not defined" });
+            return;
+        }
+        const token = jwt.sign(
+            {
+                _id: user._id,
+                email_phone: user.email_phone,
+            },
+            JWT_SECRET as string,
+            { expiresIn: "1d" }
+        );
+
+        res.cookie("token", token, {
+            maxAge: 60 * 60 * 24 * 7,
+            httpOnly: true,
+            secure: NODE_ENV === "production" ? true : false,
+            sameSite: "lax",
+        });
+        const userObj = {
+            _id: user._id,
+            name: user.name,
+            email_phone: user.email_phone,
+        };
+        res.status(200).json({
+            message: "Login successful",
+            user: userObj,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
