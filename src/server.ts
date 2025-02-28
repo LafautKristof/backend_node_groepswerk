@@ -5,7 +5,7 @@ import express from "express";
 import { notFound } from "./controllers/notFoundController";
 import mongoose from "mongoose";
 import ProductRoutes from "./Routes/ProductRoutes";
-import authRoutes from "./Routes/AuthRoutes";
+import AuthRoutes from "./Routes/AuthRoutes";
 import cookieParser from "cookie-parser";
 // Variables
 const app = express();
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Routes
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", AuthRoutes);
 app.use("/api/products", ProductRoutes);
 app.all("*", notFound);
 
