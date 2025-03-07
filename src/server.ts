@@ -22,7 +22,7 @@ app.set("views", "src/views");
 app.use(express.static("src/public"));
 
 app.get("/login", async (req, res) => {
-    res.send("login");
+    res.render("login");
 });
 
 // Routes
