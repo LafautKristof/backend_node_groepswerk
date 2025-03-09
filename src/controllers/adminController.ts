@@ -38,3 +38,31 @@ export const login = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Internal server error Login" });
     }
 };
+
+export const filter = async (req: Request, res: Response) => {
+    const choice = req.query.choice;
+    console.log(choice);
+    let apiData = [];
+    let error = null;
+
+    if (choice) {
+        let url = "";
+        if (choice === "user") {
+            let url = `https://groepswerk.onrender.com/api/${choice}`;
+        } else {
+            let url = `https://groepswerk.onrender.com/api/products/${choice}`;
+        }
+        console.log(url);
+        if (url && !error) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error("API-call mislukt");
+                }
+                apiData = await response.json();
+            } catch (err) {
+                error = "fout met API-call";
+            }
+        }
+    }
+};
