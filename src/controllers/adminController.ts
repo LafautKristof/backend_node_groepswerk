@@ -45,12 +45,12 @@ export const filter = async (req: Request, res: Response) => {
     let apiData: any[] = [];
     let error: string | null = null;
 
+    let url = "";
     if (filterValue) {
-        let url = "";
         if (filterValue === "user") {
-            let url = `https://backend-node-groepswerk.onrender.com/api/${filterValue}`;
+            url = `https://backend-node-groepswerk.onrender.com/api/${filterValue}`;
         } else {
-            let url = `https://backend-node-groepswerk.onrender.com/api/products/${filterValue}`;
+            url = `https://backend-node-groepswerk.onrender.com/api/products/${filterValue}`;
         }
         console.log(url);
         if (url && !error) {
