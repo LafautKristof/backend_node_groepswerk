@@ -18,7 +18,8 @@
             <a href="/admin?filter=user"><button>Users</button></a>
           </div>
           <div id="info-container">
-            <div id="overview"> </div>
+            <div id="overview"><% if (choice) { %>
+                <h2>Overzicht voor <%= choice %></h2>     <% } %></div>
             <div id="error"></div>
         
                 <!-- <table>

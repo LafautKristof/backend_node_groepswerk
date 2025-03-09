@@ -8,7 +8,7 @@ import ProductRoutes from "./Routes/ProductRoutes";
 import AuthRoutes from "./Routes/AuthRoutes";
 import AdminRoutes from "./Routes/AdminRoutes";
 import cookieParser from "cookie-parser";
-import { filter } from "./controllers/adminController";
+
 // Variables
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,12 +25,11 @@ app.use(express.static("src/public"));
 app.get("/login", async (req, res) => {
     res.render("login");
 });
-app.get("/admin", filter);
 
 // Routes
 app.use("/api/auth", AuthRoutes);
 app.use("/api/products", ProductRoutes);
-app.use("/api/admin", AdminRoutes);
+app.use("/", AdminRoutes);
 app.all("*", notFound);
 
 // Database connection
