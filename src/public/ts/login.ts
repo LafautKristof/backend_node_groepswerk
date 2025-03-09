@@ -16,9 +16,11 @@ loginForm.addEventListener("submit", async (event) => {
         const data = await response.json();
         console.log(data);
         if (response.ok && data.user === "admin") {
-            window.location.href = "/";
-        } else {
-            const errorDiv = document.querySelector(".error") as HTMLDivElement;
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            window.location.href = "/admin";
+        }
+        if (!response.ok) {
             errorDiv.textContent = data.message;
         }
     } catch (error) {
