@@ -40,17 +40,17 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const filter = async (req: Request, res: Response) => {
-    const choice = req.query.choice;
-    console.log(choice);
+    const filter = req.query.filter;
+    console.log(filter);
     let apiData = [];
     let error = null;
 
-    if (choice) {
+    if (filter) {
         let url = "";
-        if (choice === "user") {
-            let url = `https://groepswerk.onrender.com/api/${choice}`;
+        if (filter === "user") {
+            let url = `https://groepswerk.onrender.com/api/${filter}`;
         } else {
-            let url = `https://groepswerk.onrender.com/api/products/${choice}`;
+            let url = `https://groepswerk.onrender.com/api/products/${filter}`;
         }
         console.log(url);
         if (url && !error) {
