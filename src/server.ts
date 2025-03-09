@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import ProductRoutes from "./Routes/ProductRoutes";
 import AuthRoutes from "./Routes/AuthRoutes";
 import AdminRoutes from "./Routes/AdminRoutes";
+import UserRoutes from "./Routes/UserRoutes";
 import cookieParser from "cookie-parser";
 
 // Variables
@@ -29,6 +30,7 @@ app.get("/login", async (req, res) => {
 // Routes
 app.use("/api/auth", AuthRoutes);
 app.use("/api/products", ProductRoutes);
+app.use("/api/users", UserRoutes);
 app.use("/", AdminRoutes);
 app.all("*", notFound);
 
