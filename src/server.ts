@@ -8,6 +8,7 @@ import ProductRoutes from "./Routes/ProductRoutes";
 import AuthRoutes from "./Routes/AuthRoutes";
 import AdminRoutes from "./Routes/AdminRoutes";
 import cookieParser from "cookie-parser";
+import { filter } from "./controllers/adminController";
 // Variables
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,9 +25,7 @@ app.use(express.static("src/public"));
 app.get("/login", async (req, res) => {
     res.render("login");
 });
-app.get("/admin", async (req, res) => {
-    res.render("admin");
-});
+app.get("/admin", filter);
 
 // Routes
 app.use("/api/auth", AuthRoutes);

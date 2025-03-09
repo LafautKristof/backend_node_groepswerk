@@ -40,17 +40,17 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const filter = async (req: Request, res: Response) => {
-    const filter = req.query.filter;
-    console.log(filter);
-    let apiData = [];
-    let error = null;
+    const filterValue = req.query.filter;
+    console.log("Filter:", filterValue);
+    let apiData: any[] = [];
+    let error: string | null = null;
 
-    if (filter) {
+    if (filterValue) {
         let url = "";
-        if (filter === "user") {
-            let url = `https://backend-node-groepswerk.onrender.com/api/${filter}`;
+        if (filterValue === "user") {
+            let url = `https://backend-node-groepswerk.onrender.com/api/${filterValue}`;
         } else {
-            let url = `https://backend-node-groepswerk.onrender.com/api/products/${filter}`;
+            let url = `https://backend-node-groepswerk.onrender.com/api/products/${filterValue}`;
         }
         console.log(url);
         if (url && !error) {
@@ -65,4 +65,10 @@ export const filter = async (req: Request, res: Response) => {
             }
         }
     }
+    res.render("admin", {
+        title: "Admin Dashboard",
+        choice: filterValue,
+        apiData,
+        error,
+    });
 };
