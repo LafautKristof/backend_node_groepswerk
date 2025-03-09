@@ -15,7 +15,7 @@ loginForm.addEventListener("submit", async (event) => {
         });
         const data = await response.json();
         console.log("1", data);
-        console.log("2", data.user);
+        console.log("2", data.user.role);
         console.log("3", data.token);
         if (response.ok && data.user.role === "admin") {
             localStorage.setItem("token", data.token);
