@@ -48,9 +48,9 @@ export const filter = async (req: Request, res: Response) => {
     if (filter) {
         let url = "";
         if (filter === "user") {
-            let url = `https://groepswerk.onrender.com/api/${filter}`;
+            let url = `https://backend-node-groepswerk.onrender.com/api/${filter}`;
         } else {
-            let url = `https://groepswerk.onrender.com/api/products/${filter}`;
+            let url = `https://backend-node-groepswerk.onrender.com/api/products/${filter}`;
         }
         console.log(url);
         if (url && !error) {
