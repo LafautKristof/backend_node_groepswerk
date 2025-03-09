@@ -30,7 +30,7 @@ app.get("/login", async (req, res) => {
 // Routes
 app.use("/api/auth", AuthRoutes);
 app.use("/api/products", ProductRoutes);
-app.use("/api/users", UserRoutes);
+app.use("/api/user", UserRoutes);
 app.use("/", AdminRoutes);
 app.all("*", notFound);
 
