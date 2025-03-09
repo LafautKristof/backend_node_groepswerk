@@ -41,14 +41,14 @@
                     <tbody><% apiData.forEach((data)=>{ %>
                         <tr>
                             <td><%-choice%></td>
-                            <td><%-vehicle._id%></td>
-                            <td><%-vehicle.name%></td>
-                            <td><%-vehicle.price%></td>
-                            <td><%-vehicle.description%></td>
-                            <td><%-vehicle.images%></td>
-                            <td><%-vehicle.raters%></td>
-                            <td><%-vehicle.points%></td>
-                            <td>          <button class="red" id="deleteBtn" data-id="<%- vehicle._id %>">
+                            <td><%-data._id%></td>
+                            <td><%-data.name%></td>
+                            <td><%-data.price%></td>
+                            <td><%-data.description%></td>
+                            <td><%-data.images%></td>
+                            <td><%-data.raters%></td>
+                            <td><%-data.points%></td>
+                            <td>          <button class="red" id="deleteBtn" data-id="<%- data._id %>">
                                 Delete
                               </button></td>
                      
