@@ -14,7 +14,9 @@ loginForm.addEventListener("submit", async (event) => {
             body: JSON.stringify({ email_phone, password }),
         });
         const data = await response.json();
-        console.log(data);
+        console.log("1", data);
+        console.log("2", data.user);
+        console.log("3", data.token);
         if (response.ok && data.user === "admin") {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
