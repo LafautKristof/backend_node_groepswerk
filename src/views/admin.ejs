@@ -23,7 +23,7 @@
                 <h2>Overzicht voor <%= choice %></h2>     <% } %></div>
             <div id="error"></div>
         
-                <!-- <table>
+                <table>
                     <thead>
                         <tr>
                             <th>type</th>
@@ -35,10 +35,27 @@
                             <th>raters</th>
                             <th>points</th>
                             <th>Delete</th>
-                            <th>Update</th>
+                            
                         </tr>
                     </thead>
-                    <tbody></tbody></table> -->
+                    <tbody><% apiData.forEach((data)=>{ %>
+                        <tr>
+                            <td><%-choice%></td>
+                            <td><%-vehicle._id%></td>
+                            <td><%-vehicle.name%></td>
+                            <td><%-vehicle.price%></td>
+                            <td><%-vehicle.description%></td>
+                            <td><%-vehicle.images%></td>
+                            <td><%-vehicle.raters%></td>
+                            <td><%-vehicle.points%></td>
+                            <td>          <button class="red" id="deleteBtn" data-id="<%- vehicle._id %>">
+                                Delete
+                              </button></td>
+                     
+                        </tr>
+                    
+                        <% }); %>
+                    </tbody></table>
             </div>
         </div>
     </body>

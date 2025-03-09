@@ -60,6 +60,7 @@ export const filter = async (req: Request, res: Response) => {
                     throw new Error("API-call mislukt");
                 }
                 apiData = await response.json();
+                console.log(apiData);
             } catch (err) {
                 console.error("API-call mislukt", err);
                 error = "fout met API-call";
