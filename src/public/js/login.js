@@ -1,10 +1,10 @@
-const loginForm = document.getElementById("login-form") as HTMLFormElement;
-const errorDiv = document.querySelector(".error") as HTMLDivElement;
+const loginForm = document.getElementById("login-form");
+const errorDiv = document.querySelector(".error");
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = new FormData(loginForm);
-    const email_phone = formData.get("email_phone") as string;
-    const password = formData.get("password") as string;
+    const email_phone = formData.get("email_phone");
+    const password = formData.get("password");
     try {
         const response = await fetch("/api/auth/login", {
             method: "POST",
