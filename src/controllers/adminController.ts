@@ -61,6 +61,7 @@ export const filter = async (req: Request, res: Response) => {
                 }
                 apiData = await response.json();
             } catch (err) {
+                console.error("API-call mislukt", err);
                 error = "fout met API-call";
             }
         }

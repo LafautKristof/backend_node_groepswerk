@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Groepswerk2</title>
         <link rel="stylesheet" href="/css/admin.css" />
-        <script src="/js/admin.js" defer></script>
+        
     </head>
     <body>
         <div id="buttons-container">
@@ -18,7 +18,8 @@
             <a href="/admin?filter=user"><button>Users</button></a>
           </div>
           <div id="info-container">
-            <div id="overview"><% if (choice) { %>
+            <div id="overview">
+                <% if (choice) { %>
                 <h2>Overzicht voor <%= choice %></h2>     <% } %></div>
             <div id="error"></div>
         
