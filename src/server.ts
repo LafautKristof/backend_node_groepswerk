@@ -24,6 +24,9 @@ app.use(express.static("src/public"));
 app.get("/login", async (req, res) => {
     res.render("login");
 });
+app.get("/admin", async (req, res) => {
+    res.render("admin");
+});
 
 // Routes
 app.use("/api/auth", AuthRoutes);
