@@ -9,6 +9,23 @@ import { VideoCard } from "../models/VideoCardModel";
 export const getRandomProduct = async (req: Request, res: Response) => {
     try {
         const { count } = req.params;
+        console.log(
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count,
+            count
+        );
         const ran1 = await ComputerScreen.aggregate([{ $sample: { size: 2 } }]);
         const ran2 = await Headphone.aggregate([{ $sample: { size: 2 } }]);
         const ran3 = await Keyboard.aggregate([{ $sample: { size: 2 } }]);
