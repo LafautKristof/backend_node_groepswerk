@@ -23,7 +23,7 @@ export const getRandomProduct = async (req: Request, res: Response) => {
             ...ran5,
             ...ran6,
         ];
-        console.log(randProduct);
+        console.log("1", randProduct);
         randProduct = randProduct.sort(() => Math.random() - 0.5);
         const randomProduct = randProduct.slice(0, parseInt(count));
         res.status(200).json({ data: randomProduct });
