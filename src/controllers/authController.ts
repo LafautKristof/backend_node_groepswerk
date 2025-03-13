@@ -103,7 +103,7 @@ export const login = async (req: Request, res: Response) => {
             _id: user._id,
             name: user.name,
             email_phone: user.email_phone,
-            wishlist: user.wishlist,
+            cart: user.cart,
             role: user.role,
         };
         res.status(200).json({
