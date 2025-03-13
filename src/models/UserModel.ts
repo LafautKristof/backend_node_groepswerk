@@ -20,7 +20,6 @@ const UserSchema = new mongoose.Schema(
         password: { type: String, required: true },
         cart: {
             type: [mongoose.Types.ObjectId],
-            cart: "Wishlist",
             required: false,
             default: [],
         },
