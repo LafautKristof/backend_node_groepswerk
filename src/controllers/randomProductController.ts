@@ -10,11 +10,11 @@ export const getRandomProduct = async (req: Request, res: Response) => {
     try {
         const { count } = req.params;
         const randomProduct = await ComputerScreen.aggregate([
-            { $unionWith: "headphones" },
-            { $unionWith: "keyboards" },
-            { $unionWith: "mice" },
-            { $unionWith: "rams" },
-            { $unionWith: "videocards" },
+            { $unionWith: { coll: "headphones", pipeline: [] } },
+            { $unionWith: { coll: "keyboards", pipeline: [] } },
+            { $unionWith: { coll: "mice", pipeline: [] } },
+            { $unionWith: { coll: "rams", pipeline: [] } },
+            { $unionWith: { coll: "videocards", pipeline: [] } },
             { $sample: { size: Number(count) } },
         ]);
         console.log(randomProduct);
