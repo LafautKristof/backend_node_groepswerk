@@ -17,6 +17,7 @@ export const getRandomProduct = async (req: Request, res: Response) => {
             { $unionWith: "videocards" },
             { $sample: { size: Number(count) } },
         ]);
+        console.log(randomProduct);
         res.status(200).json(randomProduct);
     } catch (error) {
         console.error(error);
