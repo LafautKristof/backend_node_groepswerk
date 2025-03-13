@@ -35,6 +35,7 @@ import {
     deleteVideoCardById,
 } from "../controllers/videoCardController";
 
+import { getRandomProduct } from "../controllers/randomProductController";
 const router = express.Router();
 router.get("/ram", getAllRam);
 router.get("/ram/:id", getRamById);
@@ -59,6 +60,8 @@ router.delete("/mouse/:id", deleteMouseById);
 router.get("/videocard", getAllVideoCard);
 router.get("/videocard/:id", getVideoCardById);
 router.delete("/videocard/:id", deleteVideoCardById);
+
+router.get("/random/:id", getRandomProduct);
 
 /**
  * @swagger
