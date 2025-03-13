@@ -8,23 +8,24 @@ import { Ram } from "../models/RamModel";
 import { VideoCard } from "../models/VideoCardModel";
 export const getRandomProduct = async (req: Request, res: Response) => {
     try {
-        const { count } = req.params;
+        const { id } = req.params;
         console.log(
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count,
-            count
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id,
+            id
         );
         const ran1 = await ComputerScreen.aggregate([{ $sample: { size: 2 } }]);
         const ran2 = await Headphone.aggregate([{ $sample: { size: 2 } }]);
@@ -42,7 +43,7 @@ export const getRandomProduct = async (req: Request, res: Response) => {
         ];
         console.log("1", randProduct);
         randProduct = randProduct.sort(() => Math.random() - 0.5);
-        const randomProduct = randProduct.slice(0, parseInt(count));
+        const randomProduct = randProduct.slice(0, parseInt(id));
         res.status(200).json({ data: randomProduct });
     } catch (error) {
         console.error(error);
