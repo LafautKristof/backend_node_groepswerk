@@ -10,3 +10,11 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(500).send("getAllUsers error");
     }
 };
+
+export const addToCart = async (req: Request, res: Response) => {
+    try {
+        console.log(req.body);
+    } catch (error) {
+        console.log(error);
+    }
+};
