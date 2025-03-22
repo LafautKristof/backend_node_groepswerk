@@ -72,12 +72,14 @@ export const login = async (req: Request, res: Response) => {
         const { email_phone, password } = req.body;
         const user = await User.findOne({ email_phone });
         if (!user) {
-            res.status(401).json({ message: "Invalid credentials" });
+            res.status(401).json({ message: "Invalid credentials no user" });
             return;
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            res.status(401).json({ message: "Invalid credentials" });
+            res.status(401).json({
+                message: "Invalid credentials no password",
+            });
             return;
         }
         if (!JWT_SECRET) {
