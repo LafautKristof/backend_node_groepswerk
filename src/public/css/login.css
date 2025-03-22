@@ -1,40 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
 body {
-    background-image: linear-gradient(to right, #e6c881, #d6ee80);
+    background-color: white;
+    font-family: "Lexend", sans-serif;
+
     .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
+
+        .box {
+            background-color: hsla(0, 0%, 9%, 0.85);
+            padding: 4rem 3rem;
+            border-radius: 10px;
+        }
+
         h1 {
-            color: rgb(16, 13, 13);
+            color: white;
             font-size: 3rem;
             margin-bottom: 1rem;
+            text-align: center;
         }
+
         .error {
             color: red;
         }
+
         #login-form {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
             margin-top: 2rem;
+
             input {
                 margin-bottom: 1rem;
                 padding: 0.5rem;
                 border-radius: 5px;
                 border: none;
                 font-size: 1.2rem;
+                background-color: hsla(0, 0%, 9%, 0.25);
+                color: rgb(0, 0, 0);
+                color: white;
+
             }
+
             button {
                 padding: 0.5rem 1rem;
                 border-radius: 5px;
                 border: none;
                 font-size: 1.2rem;
-                background-color: #4caf50;
+                background-color: #DB4444;
                 color: white;
                 cursor: pointer;
+
+                &:hover {
+                    background-color: hsla(0, 0%, 9%, 0.25);
+                }
             }
         }
     }

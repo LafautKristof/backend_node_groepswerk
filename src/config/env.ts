@@ -8,3 +8,6 @@ export const NODE_ENV = process.env.NODE_ENV || "development";
 if (!MONGO_URI || !JWT_SECRET) {
     throw new Error("Missing environment variables");
 }
+
+
+//nAvfLEnRbKcj932C

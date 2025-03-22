@@ -9,6 +9,8 @@ import AuthRoutes from "./Routes/AuthRoutes";
 import AdminRoutes from "./Routes/AdminRoutes";
 import UserRoutes from "./Routes/UserRoutes";
 import cookieParser from "cookie-parser";
+import {User} from "./models/UserModel";
+import { Headphone } from "./models/HeadphoneModel";
 
 // Variables
 const app = express();
@@ -26,6 +28,22 @@ app.use(express.static("src/public"));
 app.get("/login", async (req, res) => {
     res.render("login");
 });
+
+
+app.get("/admin", async (req, res) => {
+    const choice = req.query.choice || "default"; 
+    
+    let apiData: any = [];
+
+    if (choice === "user") {
+        apiData = await User.find();
+    } else if (choice === "product") {
+        apiData = await Headphone.find(); 
+    }
+
+    res.render("admin", { choice, apiData });
+});
+
 
 // Routes
 app.use("/api/auth", AuthRoutes);
