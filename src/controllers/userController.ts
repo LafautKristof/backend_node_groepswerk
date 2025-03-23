@@ -54,7 +54,7 @@ export const removeFromCart = async (
     res: Response
 ): Promise<Response | void> => {
     try {
-        const { productId, userId } = req.query;
+        const { productId, userId } = req.params;
 
         if (!productId || !userId) {
             return res
