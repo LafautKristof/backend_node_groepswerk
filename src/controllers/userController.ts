@@ -79,3 +79,31 @@ export const removeFromCart = async (
         res.status(500).send("removeFromCart error");
     }
 };
+
+export const removeAllProductsFromCart = async (
+    req: Request,
+    res: Response
+) => {
+    try {
+        const { userId } = req.params;
+        console.log("1", userId);
+        if (!userId) {
+            return res.status(400).json({ message: "userId is required" });
+        }
+
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: userId.toString() },
+            { $set: { cart: [] } },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ cart: updatedUser.cart }); // Stuur alleen de cart terug
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("removeAllProductsFromCart error");
+    }
+};
