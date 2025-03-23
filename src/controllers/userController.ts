@@ -55,7 +55,7 @@ export const removeFromCart = async (
 ): Promise<Response | void> => {
     try {
         const { productId, userId } = req.params;
-
+        console.log("1", productId, "2", userId);
         if (!productId || !userId) {
             return res
                 .status(400)
@@ -67,6 +67,7 @@ export const removeFromCart = async (
             { $pull: { cart: { _id: productId.toString() } } },
             { new: true }
         );
+        console.log("updatedUser", updatedUser);
 
         if (!updatedUser) {
             return res.status(404).json({ message: "User not found" });
