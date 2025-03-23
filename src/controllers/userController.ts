@@ -21,6 +21,11 @@ export const addToCart = async (req: Request, res: Response) => {
             { new: true }
         );
         console.log(updatedUser);
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        const userObj = updatedUser.toObject();
+        console.log(userObj);
         res.status(200).json(updatedUser);
     } catch (error) {
         console.log(error);
