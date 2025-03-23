@@ -5,7 +5,7 @@ const ProductSchema = new mongoose.Schema(
         _id: { type: mongoose.Schema.Types.ObjectId, required: true }, // Zorg ervoor dat elk product een ID heeft
         name: { type: String, required: true },
         price: { type: Number, required: true },
-        image: { type: [String] },
+        images: { type: [String] },
         description: { type: String },
         quantity: { type: Number, default: 1 }, // Voeg een standaardwaarde toe
         raters: { type: Number },
