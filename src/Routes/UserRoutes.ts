@@ -3,12 +3,14 @@ import {
     getAllUsers,
     addToCart,
     removeFromCart,
+    removeAllProductsFromCart,
 } from "../controllers/userController";
 
 const router = express.Router();
 
 router.get("/", getAllUsers);
 router.post("/cart/add", addToCart);
+router.delete("/cart/deleteAll/:userId", removeAllProductsFromCart);
 router.delete("/cart/delete/:userId/:productId", removeFromCart);
 
 export default router;
