@@ -49,7 +49,10 @@ export const addToCart = async (req: Request, res: Response) => {
     }
 };
 
-export const removeFromCart = async (req: Request, res: Response) => {
+export const removeFromCart = async (
+    req: Request,
+    res: Response
+): Promise<Response | void> => {
     try {
         const { productId, userId } = req.query;
 
