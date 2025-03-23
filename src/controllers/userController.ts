@@ -14,6 +14,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const addToCart = async (req: Request, res: Response) => {
     try {
         const { product, user } = req.body;
+        console.log("1", product, "2", user);
         const updatedUser = await User.findOneAndUpdate(
             { _id: user },
             { $addToSet: { cart: product } },
