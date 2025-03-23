@@ -22,7 +22,6 @@ export const addToCart = async (req: Request, res: Response) => {
                 .json({ message: "Product and userId are required" });
         }
 
-        // Voeg een `quantity` toe als dat nog niet is gedaan
         const productWithQuantity = {
             ...product,
             quantity: product.quantity || 1,
@@ -30,7 +29,7 @@ export const addToCart = async (req: Request, res: Response) => {
 
         const updatedUser = await User.findOneAndUpdate(
             { _id: userId.toString() },
-            { $addToSet: { cart: productWithQuantity } }, // Sla het volledige product op
+            { $addToSet: { cart: productWithQuantity } },
             { new: true }
         );
 
@@ -38,11 +37,10 @@ export const addToCart = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Zet de gebruiker om naar een object voor logging (optioneel)
         const userObj = updatedUser.toObject();
         console.log(userObj);
 
-        res.status(200).json({ cart: updatedUser.cart }); // Stuur alleen de cart terug
+        res.status(200).json({ cart: updatedUser.cart });
     } catch (error) {
         console.log(error);
         res.status(500).send("addToCart error");
@@ -73,7 +71,7 @@ export const removeFromCart = async (
             return res.status(404).json({ message: "User not found" });
         }
 
-        res.status(200).json({ cart: updatedUser.cart }); // Stuur alleen de cart terug
+        res.status(200).json({ cart: updatedUser.cart });
     } catch (error) {
         console.log(error);
         res.status(500).send("removeFromCart error");

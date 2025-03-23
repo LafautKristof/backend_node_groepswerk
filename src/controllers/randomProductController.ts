@@ -9,30 +9,13 @@ import { VideoCard } from "../models/VideoCardModel";
 export const getRandomProduct = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        console.log(
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id,
-            id
-        );
-        const ran1 = await ComputerScreen.aggregate([{ $sample: { size: 2 } }]);
-        const ran2 = await Headphone.aggregate([{ $sample: { size: 2 } }]);
-        const ran3 = await Keyboard.aggregate([{ $sample: { size: 2 } }]);
-        const ran4 = await Mouse.aggregate([{ $sample: { size: 2 } }]);
-        const ran5 = await Ram.aggregate([{ $sample: { size: 2 } }]);
-        const ran6 = await VideoCard.aggregate([{ $sample: { size: 2 } }]);
+
+        const ran1 = await ComputerScreen.aggregate([{ $sample: { size: 5 } }]);
+        const ran2 = await Headphone.aggregate([{ $sample: { size: 5 } }]);
+        const ran3 = await Keyboard.aggregate([{ $sample: { size: 5 } }]);
+        const ran4 = await Mouse.aggregate([{ $sample: { size: 5 } }]);
+        const ran5 = await Ram.aggregate([{ $sample: { size: 5 } }]);
+        const ran6 = await VideoCard.aggregate([{ $sample: { size: 5 } }]);
         let randProduct = [
             ...ran1,
             ...ran2,
@@ -41,7 +24,7 @@ export const getRandomProduct = async (req: Request, res: Response) => {
             ...ran5,
             ...ran6,
         ];
-        console.log("1", randProduct);
+
         randProduct = randProduct.sort(() => Math.random() - 0.5);
         const randomProduct = randProduct.slice(0, parseInt(id));
         res.status(200).json({ data: randomProduct });
