@@ -19,6 +19,7 @@ export const addToCart = async (req: Request, res: Response) => {
             { $addToSet: { cart: product } },
             { new: true }
         );
+        console.log(updatedUser);
         res.status(200).json(updatedUser);
     } catch (error) {
         console.log(error);
