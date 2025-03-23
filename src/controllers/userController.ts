@@ -16,7 +16,7 @@ export const addToCart = async (req: Request, res: Response) => {
         const { product, userId } = req.body;
         console.log("1", product, "2", userId);
         const updatedUser = await User.findOneAndUpdate(
-            { _id: userId },
+            { _id: userId.toString() },
             { $addToSet: { cart: product } },
             { new: true }
         );
