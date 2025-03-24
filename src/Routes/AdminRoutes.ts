@@ -7,8 +7,8 @@ import {
 
 const router = express.Router();
 
+router.delete("/:collection/:id", deleteProductById);
 router.post("/login", login);
 router.get("/admin", filter);
-router.delete("/:collection/:id", deleteProductById);
 
 export default router;

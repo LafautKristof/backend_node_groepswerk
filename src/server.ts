@@ -33,7 +33,7 @@ app.use("/api/products", ProductRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/", AdminRoutes);
 app.all("*", notFound);
-
+app.set("view cache", false);
 // Database connection
 try {
     await mongoose.connect(process.env.MONGO_URI!);
