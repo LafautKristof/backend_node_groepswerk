@@ -21,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", "src/views");
+app.set("view cache", false);
 app.use(express.static("src/public"));
 
 app.get("/login", async (req, res) => {
@@ -33,7 +34,6 @@ app.use("/api/products", ProductRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/", AdminRoutes);
 app.all("*", notFound);
-app.set("view cache", false);
 // Database connection
 try {
     await mongoose.connect(process.env.MONGO_URI!);

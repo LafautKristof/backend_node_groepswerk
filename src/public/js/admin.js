@@ -8,7 +8,7 @@ deleteBtns.forEach((btn) => {
         console.log(collection);
         const response = await removeProduct(id, collection);
         console.log(response);
-        location.reload();
+        // location.reload();
 
         console.error(error);
     });
