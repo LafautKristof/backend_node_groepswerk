@@ -1,5 +1,9 @@
 import express from "express";
-import { login, filter } from "../controllers/adminController";
+import {
+    login,
+    filter,
+    deleteProductById,
+} from "../controllers/adminController";
 
 const router = express.Router();
 
