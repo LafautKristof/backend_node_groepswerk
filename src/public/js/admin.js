@@ -4,7 +4,8 @@ deleteBtns.forEach((btn) => {
     btn.addEventListener("click", async (e) => {
         const id = e.target.dataset.id;
         const collection = e.target.dataset.collection;
-
+        console.log(id);
+        console.log(collection);
         const response = await removeProduct(id, collection);
         console.log(response);
         location.reload();
