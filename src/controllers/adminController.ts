@@ -85,7 +85,7 @@ export const filter = async (req: Request, res: Response) => {
 
 export const deleteProductById = async (req: Request, res: Response) => {
     const { collection, id } = req.params;
-    let Model = mongoose.Model<typeof ComputerScreen>;
+    let Model = mongoose.Model<any>;
     switch (collection) {
         case "computerscreen":
             Model = ComputerScreen;
@@ -112,11 +112,10 @@ export const deleteProductById = async (req: Request, res: Response) => {
     }
     try {
         const query = { _id: id };
-        const product = await Model.findOne(query);
+        const product = await Model.findByIdAndDelete(query);
         if (!product) {
             return res.status(404).json({ message: "Product niet gevonden" });
         }
-        await Model.deleteOne({ _id: id });
 
         res.status(200).json({ message: "Product verwijderd" });
     } catch (error) {
