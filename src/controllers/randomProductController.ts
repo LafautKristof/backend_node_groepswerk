@@ -27,7 +27,7 @@ export const getRandomProduct = async (req: Request, res: Response) => {
 
         randProduct = randProduct.sort(() => Math.random() - 0.5);
         const randomProduct = randProduct.slice(0, parseInt(id));
-        res.status(200).json({ data: randomProduct });
+        res.status(200).json(randomProduct);
     } catch (error) {
         console.error(error);
         res.status(500).send("getRandomProduct error");
