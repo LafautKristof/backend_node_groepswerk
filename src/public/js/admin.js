@@ -13,9 +13,12 @@ deleteBtns.forEach((btn) => {
     });
     const removeProduct = async (id, collection) => {
         try {
-            const response = await fetch(`/${collection}/${id}`, {
-                method: "DELETE",
-            });
+            const response = await fetch(
+                `https://backend-node-groepswerk.onrender.com/${collection}/${id}`,
+                {
+                    method: "DELETE",
+                }
+            );
             const data = await response.json();
             console.log(data);
         } catch (error) {
