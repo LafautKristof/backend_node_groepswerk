@@ -13,7 +13,7 @@ deleteBtns.forEach((btn) => {
     });
     const removeProduct = async (id, collection) => {
         try {
-            const response = await fetch(`/api/${collection}/${id}`, {
+            const response = await fetch(`/${collection}/${id}`, {
                 method: "DELETE",
             });
             const data = await response.json();
