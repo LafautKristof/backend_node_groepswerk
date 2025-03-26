@@ -5,9 +5,11 @@ export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const users = await User.find();
         res.status(200).json(users);
+        return;
     } catch (error) {
         console.error(error);
         res.status(500).send("getAllUsers error");
+        return;
     }
 };
 
@@ -17,9 +19,10 @@ export const addToCart = async (req: Request, res: Response) => {
         console.log("1", product, "2", userId);
 
         if (!product || !userId) {
-            return res
-                .status(400)
-                .json({ message: "Product and userId are required" });
+            res.status(400).json({
+                message: "Product and userId are required",
+            });
+            return;
         }
 
         const productWithQuantity = {
@@ -34,30 +37,31 @@ export const addToCart = async (req: Request, res: Response) => {
         );
 
         if (!updatedUser) {
-            return res.status(404).json({ message: "User not found" });
+            res.status(404).json({ message: "User not found" });
+            return;
         }
 
         const userObj = updatedUser.toObject();
         console.log(userObj);
 
         res.status(200).json({ cart: updatedUser.cart });
+        return;
     } catch (error) {
         console.log(error);
         res.status(500).send("addToCart error");
+        return;
     }
 };
 
-export const removeFromCart = async (
-    req: Request,
-    res: Response
-): Promise<Response | void> => {
+export const removeFromCart = async (req: Request, res: Response) => {
     try {
         const { productId, userId } = req.params;
         console.log("1", productId, "2", userId);
         if (!productId || !userId) {
-            return res
-                .status(400)
-                .json({ message: "productId and userId are required" });
+            res.status(400).json({
+                message: "productId and userId are required",
+            });
+            return;
         }
 
         const updatedUser = await User.findOneAndUpdate(
@@ -68,13 +72,15 @@ export const removeFromCart = async (
         console.log("updatedUser", updatedUser);
 
         if (!updatedUser) {
-            return res.status(404).json({ message: "User not found" });
+            res.status(404).json({ message: "User not found" });
+            return;
         }
 
         res.status(200).json({ cart: updatedUser.cart });
     } catch (error) {
         console.log(error);
         res.status(500).send("removeFromCart error");
+        return;
     }
 };
 
@@ -86,7 +92,8 @@ export const removeAllProductsFromCart = async (
         const { userId } = req.params;
         console.log("1", userId);
         if (!userId) {
-            return res.status(400).json({ message: "userId is required" });
+            res.status(400).json({ message: "userId is required" });
+            return;
         }
 
         const updatedUser = await User.findOneAndUpdate(
@@ -96,12 +103,15 @@ export const removeAllProductsFromCart = async (
         );
 
         if (!updatedUser) {
-            return res.status(404).json({ message: "User not found" });
+            res.status(404).json({ message: "User not found" });
+            return;
         }
 
         res.status(200).json({ cart: updatedUser.cart }); // Stuur alleen de cart terug
+        return;
     } catch (error) {
         console.log(error);
         res.status(500).send("removeAllProductsFromCart error");
+        return;
     }
 };

@@ -109,7 +109,8 @@ export const deleteProductById = async (req: Request, res: Response) => {
             break;
 
         default:
-            return res.status(400).json({ message: "Ongeldige collectie" });
+            res.status(400).json({ message: "Ongeldige collectie" });
+            return;
     }
     try {
         const query = { _id: id };
@@ -117,12 +118,14 @@ export const deleteProductById = async (req: Request, res: Response) => {
         console.log(id);
         const product = await Model.findByIdAndDelete(query);
         if (!product) {
-            return res.status(404).json({ message: "Product niet gevonden" });
+            res.status(404).json({ message: "Product niet gevonden" });
+            return;
         }
 
         res.status(200).json({ message: "Product verwijderd" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
+        return;
     }
 };

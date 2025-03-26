@@ -9,7 +9,10 @@ import AuthRoutes from "./Routes/AuthRoutes";
 import AdminRoutes from "./Routes/AdminRoutes";
 import UserRoutes from "./Routes/UserRoutes";
 import cookieParser from "cookie-parser";
-
+import multer from "multer";
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import path from "path";
 // Variables
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,6 +37,41 @@ app.use("/api/products", ProductRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/", AdminRoutes);
 app.all("*", notFound);
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "uploads",
+        allowedFormats: ["jpg", "png", "jpeg", "webp"],
+    } as any,
+});
+const upload = multer({ storage: storage });
+// Routes
+app.get("/", (req, res) => {
+    res.sendFile("/index.html");
+});
+app.post("/upload", upload.single("image"), (req, res) => {
+    if (!req.file) {
+        res.status(400).send("No file uploaded");
+        return;
+    }
+    console.log(req.file);
+    const base_url = "https://res.cloudinary.com/dtjwzr6hr/image/upload/";
+    const trans =
+        "c_thumb,g_face,h_200,w_200/r_max/f_auto/a_vflip/c_scale,h_500,w_500";
+    const end = req.file.fieldname + path.extname(req.file.originalname);
+
+    const imageUrl = `${base_url}${trans}/${end}`;
+
+    res.status(200).send(
+        `<h1>File uploaded successfully</h1><img src="${imageUrl}"/>`
+    );
+});
 // Database connection
 try {
     await mongoose.connect(process.env.MONGO_URI!);

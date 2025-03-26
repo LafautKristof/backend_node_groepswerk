@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema(
             default: [],
         },
         role: { type: String, default: "user" },
+        image: { type: String },
     },
     { timestamps: true }
 );
